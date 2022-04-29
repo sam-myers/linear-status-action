@@ -1,6 +1,6 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'linear-status-action'
+description: 'Updates Linear ticket status based on PRs'
+author: 'Switchboard Visual Technologies'
 inputs:
   milliseconds: # change this
     required: true
