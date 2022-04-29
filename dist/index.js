@@ -96,6 +96,7 @@ function run() {
             const identifiersAsString = core.getInput('pr-ids');
             const identifiers = (0, input_handling_1.parseInputIdentifiers)(identifiersAsString);
             core.debug(`Executing action with identifiers ${identifiers}`); // debug is only output if you set the secret `ACTIONS_STEP_DEBUG` to true
+            core.info('Action executed');
         }
         catch (error) {
             if (error instanceof Error)
