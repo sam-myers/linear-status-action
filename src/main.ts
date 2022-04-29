@@ -1,16 +1,14 @@
 import * as core from '@actions/core';
-import { wait } from './wait';
+import { parseInputIdentifiers } from './input-handling';
 
 async function run(): Promise<void> {
   try {
-    const ms: string = core.getInput('milliseconds');
-    core.debug(`Waiting ${ms} milliseconds ...`); // debug is only output if you set the secret `ACTIONS_STEP_DEBUG` to true
+    const identifiersAsString: string = core.getInput('pr-ids');
+    const identifiers = parseInputIdentifiers(identifiersAsString);
 
-    core.debug(new Date().toTimeString());
-    await wait(parseInt(ms, 10));
-    core.debug(new Date().toTimeString());
+    core.debug(`Executing action with identifiers ${identifiers}`); // debug is only output if you set the secret `ACTIONS_STEP_DEBUG` to true
 
-    core.setOutput('time', new Date().toTimeString());
+    core.info('Action executed');
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message);
   }

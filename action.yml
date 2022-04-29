@@ -2,10 +2,10 @@ name: 'linear-status-action'
 description: 'Updates Linear ticket status based on PRs'
 author: 'Switchboard Visual Technologies'
 inputs:
-  milliseconds: # change this
+  pr-ids: # change this
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+    description: 'Array of pull request identifiers (as a JSON string)'
+    default: '[]'
 runs:
   using: 'node16'
   main: 'dist/index.js'
