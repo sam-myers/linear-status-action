@@ -214,7 +214,10 @@ function run() {
             const identifiersAsString = core.getInput('pr-ids');
             const stateMapString = core.getInput('state-id-by-team');
             const isDryRun = core.getBooleanInput('dry-run');
-            const { owner, repo } = github_1.default.context.repo;
+            const githubContext = github_1.default.context;
+            // eslint-disable-next-line no-console
+            console.log('Github context', githubContext);
+            const { owner, repo } = githubContext.repo;
             const identifiers = (0, input_handling_1.parseInputIdentifiers)(identifiersAsString);
             const stateMap = (0, input_handling_1.parseInputStateMap)(stateMapString);
             core.info(`Executing action with identifiers ${identifiers} and state maps ${stateMap}`);
@@ -236,8 +239,14 @@ function run() {
             core.info('Action finshed executing');
         }
         catch (error) {
-            if (error instanceof Error)
+            if (error instanceof Error) {
+                core.error(`Main action failed with error: ${error.message}`);
                 core.setFailed(error.message);
+            }
+            else {
+                core.error('Main action failed with unknown error type');
+                core.setFailed('Unknown error type');
+            }
         }
     });
 }
