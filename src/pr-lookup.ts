@@ -1,4 +1,4 @@
-import github from '@actions/github';
+import * as github from '@actions/github';
 import * as core from '@actions/core';
 
 export const lookupTicketsByPR = async (prNumbers: number[], owner: string, repo: string) => {

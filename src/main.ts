@@ -1,7 +1,7 @@
 import * as core from '@actions/core';
 import { parseInputIdentifiers, parseInputStateMap } from './input-handling';
 import { lookupTicketsByPR } from './pr-lookup';
-import github from '@actions/github';
+import * as github from '@actions/github';
 import { splitLinearIdentifiersByTeam, updateStatusOfLinearTickets } from './linear-status-update';
 
 async function run(): Promise<void> {

@@ -199,14 +199,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(2186));
 const input_handling_1 = __nccwpck_require__(2826);
 const pr_lookup_1 = __nccwpck_require__(4632);
-const github_1 = __importDefault(__nccwpck_require__(5438));
+const github = __importStar(__nccwpck_require__(5438));
 const linear_status_update_1 = __nccwpck_require__(2136);
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -214,7 +211,7 @@ function run() {
             const identifiersAsString = core.getInput('pr-ids');
             const stateMapString = core.getInput('state-id-by-team');
             const isDryRun = core.getBooleanInput('dry-run');
-            const githubContext = github_1.default.context;
+            const githubContext = github.context;
             // eslint-disable-next-line no-console
             console.log('Github context', githubContext);
             const { owner, repo } = githubContext.repo;
@@ -292,16 +289,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.findLinearIdentifiersInPRComment = exports.lookupTicketsByPR = void 0;
-const github_1 = __importDefault(__nccwpck_require__(5438));
+const github = __importStar(__nccwpck_require__(5438));
 const core = __importStar(__nccwpck_require__(2186));
 const lookupTicketsByPR = (prNumbers, owner, repo) => __awaiter(void 0, void 0, void 0, function* () {
     const githubToken = core.getInput('githubToken');
-    const octokit = github_1.default.getOctokit(githubToken);
+    const octokit = github.getOctokit(githubToken);
     const allMatches = [];
     for (const prNumber of prNumbers) {
         try {
