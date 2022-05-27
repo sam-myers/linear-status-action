@@ -105,7 +105,7 @@ exports.splitLinearIdentifiersByTeam = exports.updateStatusOfLinearTickets = voi
 const core = __importStar(__nccwpck_require__(2186));
 const sdk_1 = __nccwpck_require__(8851);
 const updateStatusOfLinearTickets = (identifiers, stateId, isDryRun) => __awaiter(void 0, void 0, void 0, function* () {
-    const identifiersAsString = core.getInput('linearToken') || 'lin_api_1NwnxBzZ5BCIRSqWV7v5Rb5YDQwLhQUSyfZ3olEJ';
+    const identifiersAsString = core.getInput('linearToken');
     const linearClient = new sdk_1.LinearClient({ apiKey: identifiersAsString });
     // Collect UUID based identifiers
     // This is pretty inefficient, but Linear doesn't currently have a way to
