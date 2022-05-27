@@ -2,10 +2,23 @@ name: 'linear-status-action'
 description: 'Updates Linear ticket status based on PRs'
 author: 'Switchboard Visual Technologies'
 inputs:
-  pr-ids: # change this
+  pr-ids:
     required: true
     description: 'Array of pull request identifiers (as a JSON string)'
     default: '[]'
+  state-id-by-team:
+    required: true
+    description: 'A map of teams to state identifiers to change'
+  githubToken:
+    required: true
+    description: 'Github token to query for comments in PRs'
+  linearToken:
+    required: true
+    description: 'Linear API token'
+  dry-run:
+    required: false
+    description: 'If true, will only query Linear and not make any modifications'
+    default: false
 runs:
   using: 'node16'
   main: 'dist/index.js'

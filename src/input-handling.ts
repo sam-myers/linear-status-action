@@ -13,3 +13,16 @@ export const parseInputIdentifiers = (identifiersAsString: string): number[] => 
     throw new Error('Error parsing input');
   }
 };
+
+export const parseInputStateMap = (stringStateMap: string): { [key: string]: string } => {
+  if (stringStateMap.length === 0) {
+    return {};
+  }
+
+  try {
+    return JSON.parse(stringStateMap);
+  } catch (error) {
+    core.debug(`Error parsing state map input ${error}`);
+    throw new Error('Error parsing state map input');
+  }
+};
