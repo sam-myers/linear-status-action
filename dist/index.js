@@ -125,7 +125,7 @@ const updateStatusOfLinearTickets = (identifiers, stateId, isDryRun) => __awaite
     for (let i = 0; i < uuidIdentifiers.length; i += chunkSize) {
         try {
             const uuidIdentifiersChunk = uuidIdentifiers.slice(i, i + chunkSize);
-            core.info(`Batch updating ${uuidIdentifiersChunk}`);
+            core.info(`Batch updating to state: ${stateId}, ${uuidIdentifiersChunk}`);
             if (!isDryRun) {
                 yield linearClient.issueBatchUpdate(uuidIdentifiersChunk, { stateId });
             }
@@ -212,12 +212,10 @@ function run() {
             const stateMapString = core.getInput('state-id-by-team');
             const isDryRun = core.getBooleanInput('dry-run');
             const githubContext = github.context;
-            // eslint-disable-next-line no-console
-            console.log('Github context', githubContext);
             const { owner, repo } = githubContext.repo;
             const identifiers = (0, input_handling_1.parseInputIdentifiers)(identifiersAsString);
             const stateMap = (0, input_handling_1.parseInputStateMap)(stateMapString);
-            core.info(`Executing action with identifiers ${identifiers} and state maps ${stateMap}`);
+            core.info(`Executing action with identifiers ${identifiers} and state maps ${stateMapString}`);
             // Look up each PR and get all the Linear tickets associated with each PR
             const allLinearTicketIdentifiers = yield (0, pr_lookup_1.lookupTicketsByPR)(identifiers, owner, repo);
             core.info(`Found tickets ${allLinearTicketIdentifiers}`);

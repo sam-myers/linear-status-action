@@ -24,7 +24,7 @@ export const updateStatusOfLinearTickets = async (identifiers: string[], stateId
   for (let i = 0; i < uuidIdentifiers.length; i += chunkSize) {
     try {
       const uuidIdentifiersChunk = uuidIdentifiers.slice(i, i + chunkSize);
-      core.info(`Batch updating ${uuidIdentifiersChunk}`);
+      core.info(`Batch updating to state: ${stateId}, ${uuidIdentifiersChunk}`);
 
       if (!isDryRun) {
         await linearClient.issueBatchUpdate(uuidIdentifiersChunk, { stateId });

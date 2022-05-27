@@ -11,13 +11,11 @@ async function run(): Promise<void> {
     const isDryRun = core.getBooleanInput('dry-run');
 
     const githubContext = github.context;
-    // eslint-disable-next-line no-console
-    console.log('Github context', githubContext);
     const { owner, repo } = githubContext.repo;
     const identifiers = parseInputIdentifiers(identifiersAsString);
     const stateMap = parseInputStateMap(stateMapString);
 
-    core.info(`Executing action with identifiers ${identifiers} and state maps ${stateMap}`);
+    core.info(`Executing action with identifiers ${identifiers} and state maps ${stateMapString}`);
 
     // Look up each PR and get all the Linear tickets associated with each PR
     const allLinearTicketIdentifiers = await lookupTicketsByPR(identifiers, owner, repo);
